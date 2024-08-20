@@ -5,6 +5,7 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './component/Topbar'
 import Hero from './component/Hero';
+import About from './component/About';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
+      <About />
    
    
      
