@@ -1,6 +1,6 @@
 import React from 'react';
 import UserImage from "../assets/Image/man.jpg";
-import ProgressBar from 'react-bootstrap/ProgressBar';
+// import ProgressBar from 'react-bootstrap/ProgressBar';
 function About() {
     const now = 60;
     return (
@@ -31,7 +31,7 @@ function About() {
                                 <div class="progress">
                                     <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
                                     <div class="progress-bar-wrap">
-                                    <ProgressBar now={now} label={`${now}%`} />;
+                                   
                                     </div>
                                 </div>{/* End Skills Item */}
 
