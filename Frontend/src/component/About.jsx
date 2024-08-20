@@ -1,6 +1,8 @@
 import React from 'react';
-import UserImage from "../assets/Image/IMG_20230116_103605270.JPG";
+import UserImage from "../assets/Image/man.jpg";
+import ProgressBar from 'react-bootstrap/ProgressBar';
 function About() {
+    const now = 60;
     return (
         <div>
             {/*-- About Section */}
@@ -29,7 +31,7 @@ function About() {
                                 <div class="progress">
                                     <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
                                     <div class="progress-bar-wrap">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <ProgressBar now={now} label={`${now}%`} />;
                                     </div>
                                 </div>{/* End Skills Item */}
 

@@ -8,11 +8,11 @@ function Resume() {
 
                 {/* Section Title */}
                 <div class="container section-title text-center">
-                    <h2>Resume</h2>
+                    <h4>Resume</h4>
                     <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
                 </div>{/* End Section Title */}
 
-                <div class="container">
+                <div class="container mt-5">
 
                     <div class="row">
 

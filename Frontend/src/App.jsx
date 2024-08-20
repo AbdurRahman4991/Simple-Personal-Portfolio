@@ -7,20 +7,18 @@ import Navbar from './component/Topbar'
 import Hero from './component/Hero';
 import About from './component/About';
 import Resume from './component/Resume';
-
+import Blog from './component/Blog';
+import Contact from './component/Contact';
+import Footer from './component/Footer';
+import TopBanner from './component/TopBanner';
+import BlogDetails from './component/BlogDetails';
+import { RouterProvider } from 'react-router-dom';
+import { route } from './routes';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Resume />
-   
-   
-     
+     <RouterProvider router={route}></RouterProvider>
     </>
   )
 }
