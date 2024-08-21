@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class AboutRequest extends FormRequest
 {
     /**
@@ -11,7 +10,7 @@ class AboutRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +21,13 @@ class AboutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required',
+            'email'=>'required',
+            'image.*' => ['mimes:jpeg,png,jpg,gif,svg,webp'],
+            'phone'=>'required',
+            'description'=>'required',
+            'address'=>'required',
+            'skill'=>'required',
         ];
     }
 }

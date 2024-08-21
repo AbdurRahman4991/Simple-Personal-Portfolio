@@ -12,7 +12,6 @@ class Hero extends Model
         'title',
         'description',
         'image',
-        'message',
-        
+        'message',        
     ];
 }
