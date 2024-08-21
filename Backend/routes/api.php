@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\EducationController;
+use App\Http\Controllers\Api\ExperinceController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -12,6 +14,8 @@ Route::get('/user', function (Request $request) {
 
 Route::resource('/contact', ContactController::class);
 Route::resource('/about', AboutController::class);
+Route::resource('/education', EducationController::class);
+Route::resource('/experince', ExperinceController::class);
 
 Route::get('/blog',[BlogController::class, 'blog'] );
 Route::get('/published/blog', [BlogController::class, 'publishedBlog'] );
