@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hero extends Model
+class Experince extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'description',
-        'image',
-        'message',        
+        'degination',
+        'company_name',
+        'year',
+        'address',
+        'responsibility',
+        
     ];
 }
