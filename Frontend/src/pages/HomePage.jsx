@@ -5,12 +5,14 @@ import Footer from "../component/Footer";
 import Hero from "../component/Hero";
 import Resume from "../component/Resume";
 import Topbar from "../component/Topbar";
-
+import {  useGetAboutQuery } from "../../redux/serivce/productlslice";
 const HomePage = () => {
+    const { data : aboutData} = useGetAboutQuery()
+    // const [createAndUpdate , result] = useCreateAndUpdateAboutMutation
     return (
         <div>
            <Topbar />
-           <Hero />
+           <Hero data={aboutData} />
            <About />
            <Resume />
            <Blog />

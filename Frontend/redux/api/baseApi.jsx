@@ -19,4 +19,4 @@ export const api = createApi({
 });
 
 
-export const imageUrl = 'http://192.168.10.185:5001';
+export const imageUrl = 'http://127.0.0.1:8000/image/';

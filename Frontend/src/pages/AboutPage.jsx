@@ -11,18 +11,18 @@ const AboutPage = (props) => {
 
     const { data : aboutData} = useGetAboutQuery()
     const [createAndUpdate , result] = useCreateAndUpdateAboutMutation()
-     console.log(aboutData?.data)
+    // console.log(aboutData?.data)
 
   
 
     return (
         <div >
-             <Topbar />
+             <Topbar  />
              <TopBanner title={props?.title} />
-             <About data={aboutData} />
+             <About aboutData={aboutData} />
              <Resume />
              <Contact />
-             <Footer />             
+             <Footer/>             
         </div>
     );
 };
