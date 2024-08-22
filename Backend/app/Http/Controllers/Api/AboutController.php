@@ -13,21 +13,21 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about = About::orderBy('id', 'desc')->paginate(10);
-    
-        if ($about->isEmpty()) {
-            return response()->json(['status' => 200, 'message' => 'Record not found'], 200);
+        $about = About::orderBy('id', 'desc')->first();
+        
+        // If no record is found, return a 404 status code
+        if (!$about) {
+            return response()->json(['status' => 404, 'message' => 'No record found'], 404);
         }
-    
-        // Decode skill and image for each item
-        $about->getCollection()->transform(function ($item) {
-            $item->image = json_decode($item->image, true);
-            $item->skill = json_decode($item->skill, true);
-            return $item;
-        });
-    
+        
+        // Decode skill and image for the item
+        $about->image = json_decode($about->image, true);
+        $about->skill = json_decode($about->skill, true);
+        
         return response()->json(['status' => 200, 'data' => $about], 200);
     }
+    
+    
     
 
     /**
