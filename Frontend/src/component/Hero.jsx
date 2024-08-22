@@ -14,7 +14,7 @@ function Hero({data}) {
                        {data?.data?.description}
                          </p>
                          <button className="hero-btn"> Let's get start </button>
-                    </div>
+                    </div> 
                     </div>
                     <div className="col-md-6 lg-6 sm-12">
                     <img src={ imageUrl+ data?.data?.image[0]} className="hero-image" alt="image"  />
