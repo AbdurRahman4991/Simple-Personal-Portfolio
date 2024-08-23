@@ -2,7 +2,7 @@ import { imageUrl } from "../../redux/api/baseApi";
 import UserImage from "../assets/Image/man.jpg";
 
 function Hero({data}) {
-    console.log(data);
+  
     return (
         <section id="hero" className="hero section dark-background">
             <div className="container">

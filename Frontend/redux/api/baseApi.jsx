@@ -1,12 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
-
-
-
-
-
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://127.0.0.1:8000/api',
+  baseUrl: 'http://127.0.0.1:8000/api/',
 });
 
 export const api = createApi({
@@ -20,3 +15,4 @@ export const api = createApi({
 
 
 export const imageUrl = 'http://127.0.0.1:8000/image/';
+export const blogImg = 'http://127.0.0.1:8000/images/';

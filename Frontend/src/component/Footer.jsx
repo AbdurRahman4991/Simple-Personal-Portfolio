@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Footer() {
+function Footer({data}) {
     return (
         <footer style={{background:"#4CAF50"}} className=" text-white py-4">
             <div className="container">
@@ -9,8 +9,7 @@ function Footer() {
                     <div className="col-md-4">
                         <h5>About Us</h5>
                         <p>
-                            We are committed to providing the best services to our customers. 
-                            Stay connected with us.
+                           {data?.data?.description}
                         </p>
                     </div>
                     <div className="col-md-4">
@@ -26,9 +25,9 @@ function Footer() {
                     <div className="col-md-4">
                         <h5>Contact Us</h5>
                         <p>
-                            <i className="bi bi-geo-alt"></i> Dhaka, Bangladesh <br />
-                            <i className="bi bi-telephone"></i> 01317659523 <br />
-                            <i className="bi bi-envelope"></i> engrabdurrahman4991@gmail.com
+                            <i className="bi bi-geo-alt"></i> {data?.data?.address}<br />
+                            <i className="bi bi-telephone"></i> {data?.data?.phone} <br />
+                            <i className="bi bi-envelope"></i> {data?.data?.email}
                         </p>
                     </div>
                 </div>

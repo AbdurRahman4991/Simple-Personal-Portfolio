@@ -1,17 +1,38 @@
-// Need to use the React-specific entry point to import createApi
-
 import { api } from '../api/baseApi'
 
-// Define a service using a base URL and expected endpoints
 export const aboutSlice = api.injectEndpoints({
   endpoints: (builder) => ({
     getAbout: builder.query({
-      query: (name) => `about`,
+      query: (token) => `about`,
       providesTags : ["about"]
     }),
+    getBlog: builder.query({
+      query: () => `blog`,
+      providesTags : ["blog"]
+    }),
+
+    getSingleBlog: builder.query({
+      query: (id) => `single/blog/${id}`,
+      providesTags : ["single/blog"]
+    }),
+
+    getContact: builder.query({
+      query: (id) => `single/blog/${id}`,
+      providesTags : ["single/blog"]
+    }),
+        
     createAndUpdateAbout: builder.mutation({
       query: data => ({
-        url: '/about',
+        url: 'about',
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['about']
+    }),
+
+    createContact: builder.mutation({
+      query: data => ({
+        url: 'contact',
         method: 'POST',
         body: data
       }),
@@ -22,4 +43,4 @@ export const aboutSlice = api.injectEndpoints({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAboutQuery, useCreateAndUpdateAboutMutation } = aboutSlice
+export const { useGetAboutQuery, useCreateAndUpdateAboutMutation, useGetBlogQuery, useGetSingleBlogQuery, useCreateContactMutation } = aboutSlice

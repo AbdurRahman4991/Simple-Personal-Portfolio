@@ -5,6 +5,10 @@ import ContactPage from '../pages/ContactPage';
 import BlogPage from '../pages/BlogPage';
 import HomePage from '../pages/HomePage';
 import BlogDetailsPage from '../pages/BlogDetailsPage';
+import { useGetSingleBlogQuery } from '../../redux/serivce/productlslice';
+import LayoutPage from '../pages/admin/LayoutPage';
+import AdminAboutPage from '../pages/admin/AdminAboutPage';
+
         
 export const route = createBrowserRouter ([
     {
@@ -20,13 +24,30 @@ export const route = createBrowserRouter ([
         element: <ContactPage title={"Contact"} />
     },
     {
-        path:'blog',
+        path:'/blog',
         element:<BlogPage title="Blog" />,
     },
     {
-        path:'blog-details',
+        path:'/blog/:title',
         element: <BlogDetailsPage title="Blog Details" />
-    }
+    },
 
+    {
+        path:'/admin',
+        element: <LayoutPage />,
+        children : [
+            {
+                path:'/admin',
+                element: <AdminAboutPage />, 
+            },
+            {
+                path:'/admin/about-admin',
+                element: <AdminAboutPage />, 
+            }
+        ]
+
+
+ 
+    },
 
 ])

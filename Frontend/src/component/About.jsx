@@ -1,8 +1,9 @@
 import React from 'react';
 import UserImage from "../assets/Image/man.jpg";
+import { imageUrl } from '../../redux/api/baseApi';
 
-function About({aboutData}) {
-   
+function About({data}) {
+ 
     return (
         <div>
             {/*-- About Section */}
@@ -14,13 +15,13 @@ function About({aboutData}) {
                         <div className="col-md-6">
                             <div className="row justify-content-between gy-4">
                                 <div className="col-lg-5">
-                                    <img src={UserImage} className="img-fluid" alt="Morgan Freeman" />
+                                    <img src={ imageUrl+ data?.data?.image[0]} className="img-fluid" alt="Morgan Freeman" />
                                 </div>
                                 <div className="col-lg-7 about-info">
-                                    <p><strong>Name: </strong> <span>{aboutData?.data?.name}</span></p>
-                                    <p><strong>Profile: </strong> <span>{aboutData?.data?.name}</span></p>
-                                    <p><strong>Email: </strong> <span>{aboutData?.data?.email}</span></p>
-                                    <p><strong>Phone: </strong> <span>{aboutData?.data?.phone}</span></p>
+                                    <p><strong>Name: </strong> <span>{data?.data?.name}</span></p>
+                                    <p><strong>Profile: </strong> <span>{data?.data?.name}</span></p>
+                                    <p><strong>Email: </strong> <span>{data?.data?.email}</span></p>
+                                    <p><strong>Phone: </strong> <span>{data?.data?.phone}</span></p>
                                 </div>
                             </div>
 
@@ -63,7 +64,7 @@ function About({aboutData}) {
                             <div className="about-me">
                                 <h4>About me</h4>
                                 <p>
-                                {aboutData?.data?.description} Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
+                                {data?.data?.description} Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
                                     imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
                                     porttitor accumsan tincidunt.
                                 </p>

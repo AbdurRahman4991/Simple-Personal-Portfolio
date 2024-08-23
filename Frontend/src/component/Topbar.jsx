@@ -16,6 +16,7 @@ function Topbar() {
                             <Nav.Link className='text-white' as={Link} to="/about">About</Nav.Link>
                             <Nav.Link className='text-white' as={Link} to="/contact">Contact</Nav.Link>
                             <Nav.Link className='text-white' as={Link} to="/blog">Blog</Nav.Link>
+                            <Nav.Link className='text-white' as={Link} to="/admin">Admin</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

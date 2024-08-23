@@ -13,11 +13,11 @@ const HomePage = () => {
         <div>
            <Topbar />
            <Hero data={aboutData} />
-           <About />
+           <About data={aboutData} />
            <Resume />
            <Blog />
            <Contact />
-           <Footer />
+           <Footer data={aboutData} />
            
         </div>
     );

@@ -1,4 +1,4 @@
-import { useCreateAndUpdateAboutMutation, useGetAboutQuery } from "../../redux/serivce/productlslice";
+import { useCreateAndUpdateAboutMutation, useCreateContactMutation, useGetAboutQuery } from "../../redux/serivce/productlslice";
 import About from "../component/About";
 import Contact from "../component/Contact";
 import Footer from "../component/Footer";
@@ -10,19 +10,25 @@ import Topbar from "../component/Topbar";
 const AboutPage = (props) => {
 
     const { data : aboutData} = useGetAboutQuery()
-    const [createAndUpdate , result] = useCreateAndUpdateAboutMutation()
-    // console.log(aboutData?.data)
+    // const [createAndUpdate , result] = useCreateContactMutation()
+    // console.log(aboutData)
 
+
+    // const handlerCreateConact = (data)=>{
+    //             createAndUpdate(data).then(res=>{
+                    
+    //             })
+    // }
   
 
     return (
         <div >
              <Topbar  />
              <TopBanner title={props?.title} />
-             <About aboutData={aboutData} />
+             <About data={aboutData} />
              <Resume />
              <Contact />
-             <Footer/>             
+             <Footer data={aboutData}/>             
         </div>
     );
 };
