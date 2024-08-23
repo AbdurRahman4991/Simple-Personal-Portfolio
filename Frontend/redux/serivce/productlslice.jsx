@@ -17,8 +17,8 @@ export const aboutSlice = api.injectEndpoints({
     }),
 
     getContact: builder.query({
-      query: (id) => `single/blog/${id}`,
-      providesTags : ["single/blog"]
+      query: () => `contact`,
+      providesTags : ["contact"]
     }),
         
     createAndUpdateAbout: builder.mutation({
@@ -43,4 +43,7 @@ export const aboutSlice = api.injectEndpoints({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAboutQuery, useCreateAndUpdateAboutMutation, useGetBlogQuery, useGetSingleBlogQuery, useCreateContactMutation } = aboutSlice
+export const { useGetAboutQuery, useCreateAndUpdateAboutMutation, 
+               useGetBlogQuery, useGetSingleBlogQuery, useCreateContactMutation,
+               useGetContactQuery, 
+} = aboutSlice

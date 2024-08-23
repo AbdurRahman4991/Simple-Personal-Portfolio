@@ -8,8 +8,18 @@ const { Column } = Table;
 const AdminAbout = ({ abData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
 
-  // Sample data with dynamic values from abData
+  const handleFileChange = ({ fileList }) => {
+    // Update fileList state when files are selected
+    setFileList(fileList);
+  };
+
+  const handleBeforeUpload = (file) => {
+    // You can validate or process files here before they are added to the file list
+    return false; // Prevent automatic upload
+  };
+
   const data = [
     {
       key: '1',
@@ -19,13 +29,13 @@ const AdminAbout = ({ abData }) => {
       address: abData?.data?.address,
       description: abData?.data?.description,
       profile: 'Full stack',
-      image: abData?.data?.image, // Store the image URL directly
-      skill: abData?.data?.skill, // This is the array you want to parse
+      image: abData?.data?.image,
+      skill: abData?.data?.skill,
     },
   ];
 
   const showModal = (record) => {
-    form.setFieldsValue(record); // Set form fields with selected row data
+    form.setFieldsValue(record);
     setIsModalOpen(true);
   };
 
@@ -115,18 +125,24 @@ const AdminAbout = ({ abData }) => {
           <Form.Item name="description" label="Description" rules={[{ required: true, message: 'Please enter a description' }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="upload" label="Upload Image" valuePropName="fileList">
-            <Upload multiple>
+          <Form.Item label="Upload Image">
+            <Upload
+              multiple
+              fileList={fileList}
+              onChange={handleFileChange}
+              beforeUpload={handleBeforeUpload}
+              listType="picture" // Optional: Display uploaded files as pictures
+            >
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
           </Form.Item>
-          <Form.List name="services">
+          <Form.List name="skill">
             {(fields, { add, remove }) => (
               <>
                 {fields.map((field, index) => (
                   <Form.Item
                     key={field.key}
-                    label={`Service ${index + 1}`}
+                    label={`Skill ${index + 1}`}
                     required={false}
                     style={{ marginBottom: 0 }}
                   >
@@ -134,10 +150,10 @@ const AdminAbout = ({ abData }) => {
                       <Form.Item
                         {...field}
                         validateTrigger={['onChange', 'onBlur']}
-                        rules={[{ required: true, message: 'Please input the service or delete this field' }]}
+                        rules={[{ required: true, message: 'Please input the skill or delete this field' }]}
                         noStyle
                       >
-                        <Input placeholder="Service" style={{ width: '80%' }} />
+                        <Input placeholder="Skill" style={{ width: '80%' }} />
                       </Form.Item>
                       {fields.length > 1 ? (
                         <Button danger onClick={() => remove(field.name)}>

@@ -29,21 +29,25 @@ const LayoutComponent = () => {
             key: '2',
             icon: <UserOutlined />,
             label: 'About',
-            path: '/about-admin',
+            path: '/admin/about-admin',
         },
         {
             key: '3',
-            icon: <ReadOutlined />,
-            label: 'Blog',
-           path:'/blog-admin',
+            icon: <ContactsOutlined />,
+            label: 'Contact',
+            path: '/admin/admin-contact',
         },
         {
             key: '4',
-            icon: <ContactsOutlined />,
-            label: 'Contact',
-           path: '/contact-admin',
+            icon: <ReadOutlined />,
+            label: 'Blog',
+            path: '/admin/admin-blog',
         },
     ];
+
+    const handleMenuClick = (item) => {
+        navigate(item.key);
+    };
 
     return (
         <Layout>
@@ -53,7 +57,12 @@ const LayoutComponent = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={menuItems}
+                    items={menuItems.map((item) => ({
+                        key: item.path,
+                        icon: item.icon,
+                        label: item.label,
+                    }))}
+                    onClick={handleMenuClick} // Handle menu navigation
                 />
             </Sider>
             <Layout>
@@ -83,8 +92,7 @@ const LayoutComponent = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                   {/* Routed content goes here */}
-                   <Outlet />
+                    <Outlet />
                 </Content>
             </Layout>
         </Layout>
