@@ -2,7 +2,14 @@ import { imageUrl } from "../../redux/api/baseApi";
 import UserImage from "../assets/Image/man.jpg";
 
 function Hero({data}) {
-  
+      // Define the maximum length for the description
+      const maxDescriptionLength = 500;
+
+      // Get the description and limit its length
+      const description = data?.data?.description;
+      const truncatedDescription = description?.length > maxDescriptionLength 
+          ? description.substring(0, maxDescriptionLength) + '...'
+          : description;
     return (
         <section id="hero" className="hero section dark-background">
             <div className="container">
@@ -11,7 +18,7 @@ function Hero({data}) {
                     <div className="hero-text">
                         <h2 className="text-white"> {data?.data?.name}</h2>
                         <p className="hero-description">
-                       {data?.data?.description}
+                       {truncatedDescription}
                          </p>
                          <button className="hero-btn"> Let's get start </button>
                     </div> 

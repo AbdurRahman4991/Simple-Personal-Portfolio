@@ -2,22 +2,24 @@ import React, { useState } from 'react';
 import { Space, Table, Modal, Button, Form, Input, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { blogImg } from '../../../redux/api/baseApi';
+import { useCreateAndUpdateAboutMutation } from '../../../redux/serivce/productlslice';
+import Swal from 'sweetalert2';
 
 const { Column } = Table;
 
 const AdminAbout = ({ abData }) => {
+  const [createAbout, { isLoading }] = useCreateAndUpdateAboutMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
 
   const handleFileChange = ({ fileList }) => {
-    // Update fileList state when files are selected
     setFileList(fileList);
   };
 
   const handleBeforeUpload = (file) => {
-    // You can validate or process files here before they are added to the file list
-    return false; // Prevent automatic upload
+    // Prevent automatic upload
+    return false;
   };
 
   const data = [
@@ -39,17 +41,50 @@ const AdminAbout = ({ abData }) => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    form.submit();
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const onFinish = (values) => {
-    console.log('Form Values:', values);
-    setIsModalOpen(false);
+  const onFinish = async (values) => {
+    const formData = new FormData();
+
+    // Append all form values
+    Object.keys(values).forEach((key) => {
+      if (key === 'skill') {
+        values.skill.forEach((skill, index) => {
+          formData.append(`skill[${index}]`, skill);
+        });
+      } else {
+        formData.append(key, values[key]);
+      }
+    });
+
+    // Append all selected images
+    fileList.forEach((file, index) => {
+      formData.append(`image[${index}]`, file.originFileObj);
+    });
+
+    try {
+      const response = await createAbout(formData).unwrap();
+      if (response) {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your message has been sent successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+        setIsModalOpen(false);
+        setFileList([]);
+        form.resetFields();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'There was a problem sending your message. Please try again later.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
   };
 
   return (
@@ -100,9 +135,20 @@ const AdminAbout = ({ abData }) => {
       <Modal
         title="Update Information"
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
-        okText="Submit"
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            loading={isLoading}
+            onClick={() => form.submit()}
+          >
+            Submit
+          </Button>,
+        ]}
       >
         <Form
           form={form}
@@ -127,11 +173,11 @@ const AdminAbout = ({ abData }) => {
           </Form.Item>
           <Form.Item label="Upload Image">
             <Upload
-              multiple
+              multiple={true}
               fileList={fileList}
               onChange={handleFileChange}
               beforeUpload={handleBeforeUpload}
-              listType="picture" // Optional: Display uploaded files as pictures
+              listType="picture"
             >
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
